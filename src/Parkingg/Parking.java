@@ -27,9 +27,39 @@ public class Parking {
         if(matriculas.get(posicion)!=null)
             throw new ParkingException("Posicion ocupada",matricula);
         if(matriculas.contains(matricula))
+            throw new ParkingException("Matricula repetida",matricula);
         matriculas.set(posicion,matricula);
         
     }
+    
+    public int salida(String matricula)throws ParkingException{
+        if(matriculas.contains(matricula))
+            throw new ParkingException("Matricula no existente",matricula);
+        int posicion=matriculas.indexOf(matricula);
+        matriculas.set(posicion, null);
+        return posicion;
+    }
+    
+    public int getPosicionesTotales(){
+        return matriculas.size();
+    }
+    
+    public int getPosicionesLibres(){
+        return Collections.frequency(matriculas, null);
+    }
+    
+    public int getPosicionesOcupadas(){
+        return getPosicionesTotales() -getPosicionesLibres();
+    }
+
+    @Override
+    public String toString() {
+        String cadena = "Parking " +nombre+"\n";
+        cadena +="------------------\n";
+        
+    }
+    
+    
 
     private static class ParkingException extends Exception {
 
