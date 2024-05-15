@@ -56,7 +56,13 @@ public class Parking {
     public String toString() {
         String cadena = "Parking " +nombre+"\n";
         cadena +="------------------\n";
-        
+        for(int i=0;i<matriculas.size();i++){
+            cadena+= "posicion "+i+": ";
+            cadena+= (matriculas.get(i)==null)? "Vacia" : matriculas.get(i);
+            cadena+="\n";
+        }
+        cadena+="--------------\n";
+        return cadena;
     }
     
     
